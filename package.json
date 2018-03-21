@@ -1,0 +1,19 @@
+{
+  "name": "rural_india_education_project",
+  "version": "1.0.0",
+  "description": "**Clone and run for a quick way to see Electron in action.**",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avyukd/rural_india_education_project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/avyukd/rural_india_education_project/issues"
+  },
+  "homepage": "https://github.com/avyukd/rural_india_education_project#readme"
+}
