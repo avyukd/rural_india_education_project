@@ -3,7 +3,8 @@
  * Copyright 2014-2017 Materialize
  * MIT License (https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)
  */
-.materialize-red {
+
+ .materialize-red {
   background-color: #e51c23 !important;
 }
 
@@ -6121,6 +6122,8 @@ textarea.materialize-textarea.validate + label {
   width: 100%;
 }
 
+
+
 input:not([type]).invalid + label:after,
 input:not([type]).valid + label:after,
 input[type=text]:not(.browser-default).invalid + label:after,
@@ -6387,10 +6390,6 @@ textarea.materialize-textarea + label:after, .select-wrapper + label:after {
   font-size: 2rem;
   -webkit-transition: color .2s;
   transition: color .2s;
-}
-
-.input-field .prefix.active {
-  color: #26a69a;
 }
 
 .input-field .prefix ~ input,
