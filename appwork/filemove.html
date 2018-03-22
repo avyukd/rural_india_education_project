@@ -10,6 +10,17 @@
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
+<script>
+         const {ipcRenderer} = require('electron')
+
+         // Async message handler
+         ipcRenderer.on('form-values', (event, arg1,arg2) => {
+            console.log("GOT IT")
+			console.log(arg1)
+			console.log(arg2)
+         })
+
+      </script>
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">RIEP- Rural India Education Project</a>
       <ul class="right hide-on-med-and-down">

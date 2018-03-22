@@ -9,6 +9,7 @@
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
+
 <body>
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">RIEP- Rural India Education Project</a>
@@ -30,7 +31,7 @@
         <h5 class="header col s12 light">Add content for every subject everyday by using the table.</h5>
       </div>
       <div class="row center">
-         <form name='ipcForm' onSubmit="JavaScript:sendForm(event)">
+         <form method="post" action="filemove.html" name='ipcForm' onSubmit="return window.location.href='filemove.html';JavaScript:sendForm(event);">
 		 <label style="font-size:30px; color=#dd2c00;">Number of days:</label><br>
   <input type="number" id="numd">
   <br>

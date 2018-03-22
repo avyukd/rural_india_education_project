@@ -18,6 +18,8 @@ function createWindow() {
 ipcMain.on('form-submission', function (event, numd,nums) {
    console.log(numd)
    console.log(nums)
+   event.sender.send('form-values', numd,nums)
+   
 });
 
 app.on('ready', createWindow)
