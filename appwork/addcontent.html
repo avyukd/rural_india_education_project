@@ -30,18 +30,19 @@
         <h5 class="header col s12 light">Add content for every subject everyday by using the table.</h5>
       </div>
       <div class="row center">
-         <form action='filemove.html'>
+         <form name='ipcForm' onSubmit="JavaScript:sendForm(event)">
 		 <label style="font-size:30px; color=#dd2c00;">Number of days:</label><br>
-  <input type="number" name="firstname">
+  <input type="number" id="numd">
   <br>
  <label style="font-size:30px; color=#dd2c00;">Number of subjects:</label><br>
-  <input type="number" name="lastname">
+  <input type="number" id="nums">
   <br><br>
     <button href="filemove.html" class="btn waves-effect waves-light" type="submit" name="action">Submit
     <i class="material-icons right">send</i>
   </button>
 	  
     </form>
+	<script src='renderFile.js'>
   </div>
         
       </div>

@@ -1,6 +1,7 @@
-const {app, BrowserWindow} = require('electron') 
-const url = require('url') 
-const path = require('path')  
+const {app, BrowserWindow} = require('electron')
+const url = require('url')
+const path = require('path')
+const {ipcMain} = require('electron')
 
 let win  
 
@@ -13,4 +14,10 @@ function createWindow() {
    })) 
 }  
 
-app.on('ready', createWindow) 
+// Event handler for asynchronous incoming messages
+ipcMain.on('form-submission', function (event, numd,nums) {
+   console.log(numd)
+   console.log(nums)
+});
+
+app.on('ready', createWindow)
