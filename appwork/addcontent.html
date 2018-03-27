@@ -31,7 +31,7 @@
         <h5 id="secondheader" class="header col s12 light">Customize how much content you want to add and where.</h5>
       </div>
       <div class="row center">
-         <form method="post" onSubmit=")">
+         <form name="ipcForm" onSubmit="JavaScript:sendForm(event)">
 		 <label style="font-size:30px; color=#dd2c00;">Number of days:</label><br>
   <input type="number" id="numd">
   <br>
@@ -44,6 +44,7 @@
   </button>
 	    	
     </form>
+        <script src='renderer.js'></script>
 
   </div>
  

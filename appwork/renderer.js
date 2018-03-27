@@ -2,9 +2,9 @@ const ipcRenderer = require('electron').ipcRenderer;
 
 function sendForm(event) {
     event.preventDefault() // stop the form from submitting
-    let firstname = document.getElementById("firstname").value;
-    ipcRenderer.send('form-submission', firstname)
-	document.getElementById("test").innerHTML = "working";
+    let numd = document.getElementById("numd").value;
+    ipcRenderer.send('form-submission', numd)
+	document.getElementById("mainhead").innerHTML = numd;
 }
 
 

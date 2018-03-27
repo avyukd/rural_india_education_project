@@ -15,7 +15,6 @@ function createWindow(){
         window.show();
     });
 
-    window.webContents.openDevTools();
 
     let contents = window.webContents;
 
@@ -24,8 +23,8 @@ function createWindow(){
     });
 }
 
-ipcMain.on('form-submission', function (event, firstname) {
-    console.log("this is the firstname from the form ->", firstname)
+ipcMain.on('form-submission', function (event, numd) {
+    console.log("this is the num of days from the form ->", (numd))
 });
 
 app.on('ready', function(){
