@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/avyukd/rural_india_education_project/issues"
   },
-  "homepage": "https://github.com/avyukd/rural_india_education_project#readme"
+  "homepage": "https://github.com/avyukd/rural_india_education_project#readme",
+  "dependencies": {
+    "jquery": "^3.3.1"
+  }
 }

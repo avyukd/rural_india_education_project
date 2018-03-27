@@ -1,111 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Rural India Education Project (RIEP)</title>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-</head>
-<body>
-  <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">RIEP- Rural India Education Project</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="#">Exit</a></li>
-      </ul>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Electron App</title>
+    </head>
 
-      <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">Exit</a></li>
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-    </div>
-  </nav>
-  <div class="section no-pad-bot" id="index-banner">
-    <div class="container">
-      <br><br>
-      <h1 class="header center orange-text">Administrator Main Menu</h1>
-      <div class="row center">
-        <h5 class="header col s12 light">Welcome! Click below to start adding content onto your SD card.</h5>
-      </div>
-      <div class="row center">
-        <a href="addcontent.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
-      </div>
-      <br><br>
+    <body>
 
-    </div>
-  </div>
-
-
-  <div class="container">
-    <div class="section">
-      <div class="row">
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">book</i></h2>
-            <h5 class="center">Our Mission</h5>
-
-            <p class="light">To bring a basic education to those who don't have access to it, in the most rural sectors of India, through the use of modern yet subtly simple technologies. we want to help improve the lives of those who live in villages, orphans on the railway stations, and millions of other children who have almost lost hope. </p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
-            <h5 class="center">One Platform</h5>
-
-            <p class="light">We found a single, flexible solution, to fit all users needs: a simple raspberry pi implementation that can play educational content- videos, audio, text- approved by the NCERT, on monitors across India in a secure and safe manner. Kids don't have to ask for an education- we bring the education to them!</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
-            <h5 class="center">Implementation</h5>
-
-            <p class="light">Your preprepared content will be transfered onto an SD card, that can be plugged into any of our raspberry pi devices, preloaded with custom OS systems, they will play your content utilizing a specific classification system on monitors across India, in multiple languages and across many grades and subjects.</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-    <br><br>
-  </div>
-
-  <footer class="page-footer orange">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Organization Bio</h5>
-          <p class="grey-text text-lighten-4">Avyuk is a high school student currently studying at Thomas Jefferson High School for Science and Technology, the number one public school in the USA. Learn more at avyukd.github.io.</p>
-
-
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Settings</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Help</a></li>
-          </ul>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Email</a></li>
-            <li><a class="white-text" href="#!">Facebook</a></li>
-            <li><a class="white-text" href="#!">Linkedin</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-
-      </div>
-    </div>
-  </footer>
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
-
-  </body>
+        <form name="ipcForm" onSubmit="JavaScript:sendForm(event)">
+            First name:<br>
+            <input type="text" name="firstname" id="firstname" value="John">
+            <br>
+            Last name:<br>
+            <input type="text" name="lastname" id="lastname" value="Smith">
+            <br><br>
+            <input type="submit" value="Submit">
+        </form>
+		<p id="test"></p>
+        <script src='renderer.js'></script>
+    </body>
 </html>

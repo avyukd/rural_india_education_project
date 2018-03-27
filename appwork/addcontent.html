@@ -26,25 +26,27 @@
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
-      <h1 class="header center orange-text">Step 2- Add Your Content</h1>
+      <h1 id="mainhead" class="header center orange-text">Step 2- Setup up your classification</h1>
       <div class="row center">
-        <h5 class="header col s12 light">Add content for every subject everyday by using the table.</h5>
+        <h5 id="secondheader" class="header col s12 light">Customize how much content you want to add and where.</h5>
       </div>
       <div class="row center">
-         <form method="post" action="filemove.html" name='ipcForm' onSubmit="return window.location.href='filemove.html';JavaScript:sendForm(event);">
+         <form method="post" onSubmit=")">
 		 <label style="font-size:30px; color=#dd2c00;">Number of days:</label><br>
   <input type="number" id="numd">
   <br>
  <label style="font-size:30px; color=#dd2c00;">Number of subjects:</label><br>
   <input type="number" id="nums">
   <br><br>
-    <button href="filemove.html" class="btn waves-effect waves-light" type="submit" name="action">Submit
+
+    <button onclick="" class="btn waves-effect waves-light" type="submit" id="btn" name="action">Submit
     <i class="material-icons right">send</i>
   </button>
-	  
+	    	
     </form>
-	<script src='renderFile.js'>
+
   </div>
+ 
         
       </div>
       <br><br>
@@ -86,6 +88,7 @@
 
 
   <!--  Scripts-->
+
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>

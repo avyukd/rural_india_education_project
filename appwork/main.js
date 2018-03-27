@@ -1,25 +1,77 @@
-const {app, BrowserWindow} = require('electron')
-const url = require('url')
-const path = require('path')
-const {ipcMain} = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron');
+const path = require ('path');
+const fs = require('fs');
+const os = require('os');
 
-let win  
+let window;
 
-function createWindow() { 
-   win = new BrowserWindow({width: 800, height: 600}) 
-   win.loadURL(url.format ({ 
-      pathname: path.join(__dirname, 'index.html'), 
-      protocol: 'file:', 
-      slashes: true 
-   })) 
-}  
+function createWindow(){
+    window = new BrowserWindow({
+        show: false
+    });
 
-// Event handler for asynchronous incoming messages
-ipcMain.on('form-submission', function (event, numd,nums) {
-   console.log(numd)
-   console.log(nums)
-   event.sender.send('form-values', numd,nums)
-   
+    window.loadURL(`file://${__dirname}/index.html`);
+    window.once('ready-to-show', function (){
+        window.show();
+    });
+
+    window.webContents.openDevTools();
+
+    let contents = window.webContents;
+
+    window.on('closed', function() {
+        window = null;
+    });
+}
+
+ipcMain.on('form-submission', function (event, firstname) {
+    console.log("this is the firstname from the form ->", firstname)
 });
 
-app.on('ready', createWindow)
+app.on('ready', function(){
+    createWindow();
+});
+
+
+
+
+
+/*const electron = require('electron');
+const {app} = electron;
+const {BrowserWindow} = electron;
+const ipcMain = require('electron').ipcMain
+
+app.on('ready', () => {
+  let win = new BrowserWindow({width: 800, height: 500});
+
+  win.loadURL('file://' + __dirname + '/index.html');
+
+  // Emitted when the window is closed.
+  win.on('closed', () => {
+    win = null;
+  });
+
+});
+
+const {ipcMain} = require('electron')
+  ipcMain.on('asynchronous-message', (event, arg) => {
+    console.log(arg)  // prints "ping"
+    event.sender.send('asynchronous-reply', 'pong')
+  })
+  
+  ipcMain.on('synchronous-message', (event, arg) => {
+    console.log(arg)  // prints "ping"
+    event.returnValue = 'pong'
+  })
+*/
+/*const {ipcMain} = require('electron')
+  ipcMain.on('asynchronous-message', (event, arg) => {
+    console.log(arg)  // prints "ping"
+    event.sender.send('asynchronous-reply', 'pong')
+  })
+  
+  ipcMain.on('synchronous-message', (event, arg) => {
+    console.log(arg)  // prints "ping"
+    event.returnValue = 'pong'
+  })*/
+  

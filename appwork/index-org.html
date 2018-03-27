@@ -4,23 +4,11 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <title>Rural India Education Project (RIEP)</title>
-  <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
-<script>
-         const {ipcRenderer} = require('electron')
-
-         // Async message handler
-         ipcRenderer.on('form-values', (event, arg1,arg2) => {
-            console.log("GOT IT")
-			console.log(arg1)
-			console.log(arg2)
-         })
-
-      </script>
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">RIEP- Rural India Education Project</a>
       <ul class="right hide-on-med-and-down">
@@ -36,48 +24,12 @@
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
-      <h1 class="header center orange-text">Administrator Main Menu</h1>
+      <h1 id="mainhead" class="header center orange-text">Administrator Main Menu</h1>
       <div class="row center">
         <h5 class="header col s12 light">Welcome! Click below to start adding content onto your SD card.</h5>
       </div>
       <div class="row center">
-        <table>
-  <tr>
-    <th>Day</th>
-    <th>Subject 1</th>
-    <th>Subject 2</th>
-  </tr>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
-  </tr>
-  <tr>
-    <td>Centro comercial Moctezuma</td>
-    <td>Francisco Chang</td>
-    <td>Mexico</td>
-  </tr>
-  <tr>
-    <td>Ernst Handel</td>
-    <td>Roland Mendel</td>
-    <td>Austria</td>
-  </tr>
-  <tr>
-    <td>Island Trading</td>
-    <td>Helen Bennett</td>
-    <td>UK</td>
-  </tr>
-  <tr>
-    <td>Laughing Bacchus Winecellars</td>
-    <td>Yoshi Tannamuri</td>
-    <td>Canada</td>
-  </tr>
-  <tr>
-    <td>Magazzini Alimentari Riuniti</td>
-    <td>Giovanni Rovelli</td>
-    <td>Italy</td>
-  </tr>
-</table>
+        <a href="addcontent.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
       </div>
       <br><br>
 
@@ -85,7 +37,40 @@
   </div>
 
 
-  
+  <div class="container">
+    <div class="section">
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">book</i></h2>
+            <h5 class="center">Our Mission</h5>
+
+            <p class="light">To bring a basic education to those who don't have access to it, in the most rural sectors of India, through the use of modern yet subtly simple technologies. we want to help improve the lives of those who live in villages, orphans on the railway stations, and millions of other children who have almost lost hope. </p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
+            <h5 class="center">One Platform</h5>
+
+            <p class="light">We found a single, flexible solution, to fit all users needs: a simple raspberry pi implementation that can play educational content- videos, audio, text- approved by the NCERT, on monitors across India in a secure and safe manner. Kids don't have to ask for an education- we bring the education to them!</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
+            <h5 class="center">Implementation</h5>
+
+            <p class="light">Your preprepared content will be transfered onto an SD card, that can be plugged into any of our raspberry pi devices, preloaded with custom OS systems, they will play your content utilizing a specific classification system on monitors across India, in multiple languages and across many grades and subjects.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <br><br>
+  </div>
 
   <footer class="page-footer orange">
     <div class="container">
@@ -118,9 +103,6 @@
       </div>
     </div>
   </footer>
-
-
-  <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
