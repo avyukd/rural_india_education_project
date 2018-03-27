@@ -25,12 +25,14 @@ function sendForm(event) {
 				next_cell.innerHTML = "Subject "+j;
 			}
 			else{
-				next_cell.innerHTML = "NEW CELL1";
+				next_cell.innerHTML = "<input type='file' name=file" + (k*j).toString() + ">";
 			}
 		}
 	}
 }
-
+ function formCopy(event){
+	 
+ }
 
 /*const {ipcRenderer} = require('electron')
   console.log(ipcRenderer.sendSync('synchronous-message', 'ping')) // prints "pong"
