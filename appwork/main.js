@@ -25,6 +25,7 @@ function createWindow(){
 
 ipcMain.on('form-submission', function (event, m) {
     console.log("this is the num of days and num of subjects from the form ->", (m))
+	event.sender.send('reply', m)
 });
 
 app.on('ready', function(){

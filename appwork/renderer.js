@@ -7,6 +7,8 @@ function sendForm(event) {
     ipcRenderer.send('form-submission', [numd,nums])
 	var parent = document.getElementById("center");
 	var child = document.getElementById("classform");
+	var cform = document.getElementById("contentform");
+	cform.insertAdjacentHTML('afterend','<button class="btn waves-effect waves-light" type="submit" id="btn2" name="action">Submit<i class="material-icons right">send</i>')
 	parent.removeChild(child);
 	document.getElementById("mainhead").innerHTML = "Step 3 - Copy to your custom file structure";
 	document.getElementById("secondheader").innerHTML = "Copy content from your machine onto our portable USB drive seamlessly";
@@ -25,12 +27,16 @@ function sendForm(event) {
 				next_cell.innerHTML = "Subject "+j;
 			}
 			else{
-				next_cell.innerHTML = "<input type='file' name=file" + (k*j).toString() + ">";
+				next_cell.innerHTML = "<input type='file' id=file" + (k*j).toString() + ">";
 			}
 		}
 	}
 }
  function formCopy(event){
+	 event.preventDefault()
+	 ipcRenderer.on('reply', (event, arg) => {
+    console.log(arg) // prints "pong"
+  })
 	 
  }
 
