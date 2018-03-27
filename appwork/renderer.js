@@ -3,20 +3,32 @@ const ipcRenderer = require('electron').ipcRenderer;
 function sendForm(event) {
     event.preventDefault() // stop the form from submitting
     let numd = document.getElementById("numd").value;
-    ipcRenderer.send('form-submission', numd)
+	let nums = document.getElementById("nums").value;
+    ipcRenderer.send('form-submission', [numd,nums])
 	var parent = document.getElementById("center");
 	var child = document.getElementById("classform");
 	parent.removeChild(child);
 	document.getElementById("mainhead").innerHTML = "Step 3 - Copy to your custom file structure";
 	document.getElementById("secondheader").innerHTML = "Copy content from your machine onto our portable USB drive seamlessly";
-	
 	var table = document.getElementById("classtable");
-	var row = table.insertRow(0);
-	var cell1 = row.insertCell(0);
-var cell2 = row.insertCell(1);
-cell1.innerHTML = "NEW CELL1";
-cell2.innerHTML = "NEW CELL2";
-	parent.appendChild(para);
+	for(var k = 0; k < parseInt(numd)+1; k++){
+		var row = table.insertRow(k);
+		for(var j = 0; j < parseInt(nums)+1; j++){
+			var next_cell = row.insertCell(j);
+			if(j==0 && k!=0){
+				next_cell.innerHTML = "Day "+k;
+			}
+			else if(k==0 && j==0){
+				next_cell.innerHTML = "---";
+			}
+			else if(j!=0 && k==0){
+				next_cell.innerHTML = "Subject "+j;
+			}
+			else{
+				next_cell.innerHTML = "NEW CELL1";
+			}
+		}
+	}
 }
 
 

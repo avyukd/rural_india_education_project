@@ -23,8 +23,8 @@ function createWindow(){
     });
 }
 
-ipcMain.on('form-submission', function (event, numd) {
-    console.log("this is the num of days from the form ->", (numd))
+ipcMain.on('form-submission', function (event, m) {
+    console.log("this is the num of days and num of subjects from the form ->", (m))
 });
 
 app.on('ready', function(){
