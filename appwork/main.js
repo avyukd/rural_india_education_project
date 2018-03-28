@@ -1,7 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require ('path');
-const fs = require('fs');
 const os = require('os');
+var fs = require('fs');
 
 let window;
 
@@ -21,11 +21,20 @@ function createWindow(){
     window.on('closed', function() {
         window = null;
     });
+	
 }
+
+
 
 ipcMain.on('form-submission', function (event, m) {
     console.log("this is the num of days and num of subjects from the form ->", (m))
-	event.sender.send('reply', m)
+
+	//window.requestFileSystem(window.TEMPORARY, 1024*1024, function(fs) {
+		//	fs.root.getDirectory('YESSSS IT WORKED', {create: true}, function(dirEntry) {}, errorHandler);}, errorHandler);
+});
+
+ipcMain.on('content-submission', function (event, m) {
+    console.log("Content has been submitted!")
 });
 
 app.on('ready', function(){

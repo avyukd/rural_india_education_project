@@ -1,20 +1,27 @@
-const ipcRenderer = require('electron').ipcRenderer;
+const fs = require('fs')
 
+const ipcRenderer = require('electron').ipcRenderer;
 function sendForm(event) {
     event.preventDefault() // stop the form from submitting
-    let numd = document.getElementById("numd").value;
+	let numd = document.getElementById("numd").value;
 	let nums = document.getElementById("nums").value;
-    ipcRenderer.send('form-submission', [numd,nums])
+	let fileloc = document.getElementById("fileloc").value;
+	fs.mkdirSync(fileloc+'/riep_content');
+    ipcRenderer.send('form-submission', [numd,nums,fileloc])
 	var parent = document.getElementById("center");
 	var child = document.getElementById("classform");
 	var cform = document.getElementById("contentform");
-	cform.insertAdjacentHTML('afterend','<button class="btn waves-effect waves-light" type="submit" id="btn2" name="action">Submit<i class="material-icons right">send</i>')
+	cform.insertAdjacentHTML('beforeend','<button class="btn waves-effect waves-light" type="submit" id="btn2" name="action">Submit<i class="material-icons right">send</i></button>')
 	parent.removeChild(child);
 	document.getElementById("mainhead").innerHTML = "Step 3 - Copy to your custom file structure";
 	document.getElementById("secondheader").innerHTML = "Copy content from your machine onto our portable USB drive seamlessly";
 	var table = document.getElementById("classtable");
 	for(var k = 0; k < parseInt(numd)+1; k++){
 		var row = table.insertRow(k);
+		if(k!=0){
+			var foldername = '/'+'Day_'+k
+			fs.mkdirSync(fileloc+'/riep_content'+foldername);
+		}
 		for(var j = 0; j < parseInt(nums)+1; j++){
 			var next_cell = row.insertCell(j);
 			if(j==0 && k!=0){
@@ -27,16 +34,23 @@ function sendForm(event) {
 				next_cell.innerHTML = "Subject "+j;
 			}
 			else{
-				next_cell.innerHTML = "<input type='file' id=file" + (k*j).toString() + ">";
+				next_cell.innerHTML = "<input type='file' id=file" + (k*10+j).toString() + ">";
+				subname = '/'+'Subject_'+j
+				fs.mkdirSync(fileloc+'/riep_content'+foldername+subname);
 			}
 		}
 	}
+	
 }
  function formCopy(event){
 	 event.preventDefault()
-	 ipcRenderer.on('reply', (event, arg) => {
-    console.log(arg) // prints "pong"
-  })
+	 ipcRenderer.send('content-submission', "form submitted")
+	 document.getElementById("mainhead").innerHTML = "worked";
+
+var elements = document.getElementById("contentform").elements;
+for (var i = 0, element; element = elements[i++];) {
+    document.getElementById("mainhead").innerHTML = "YAY" +i
+}
 	 
  }
 
