@@ -9,6 +9,7 @@ function sendForm(event) {
 	let nums = document.getElementById("nums").value;
 	fileloc = document.getElementById("fileloc").value;
 	fs.mkdirSync(fileloc+'/riep_content');
+	fs.createReadStream('C:/Users/Avyuk Dixit/hello.txt').pipe(fs.createWriteStream('noway.txt'));
     ipcRenderer.send('form-submission', [numd,nums,fileloc])
 	var parent = document.getElementById("center");
 	var child = document.getElementById("classform");
