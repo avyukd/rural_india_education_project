@@ -34,7 +34,7 @@ ipcMain.on('form-submission', function (event, m) {
 });
 
 ipcMain.on('content-submission', function (event, m) {
-    console.log("Content has been submitted!")
+    console.log(m)
 });
 
 app.on('ready', function(){

@@ -3,13 +3,15 @@ const fs = require('fs')
 const ipcRenderer = require('electron').ipcRenderer;
 
 var fileloc = "";
+var numd = 0;
+var nums = 0;
+
 function sendForm(event) {
     event.preventDefault() // stop the form from submitting
-	let numd = document.getElementById("numd").value;
-	let nums = document.getElementById("nums").value;
+	numd = document.getElementById("numd").value;
+	nums = document.getElementById("nums").value;
 	fileloc = document.getElementById("fileloc").value;
 	fs.mkdirSync(fileloc+'/riep_content');
-	fs.createReadStream('C:/Users/Avyuk Dixit/hello.txt').pipe(fs.createWriteStream('noway.txt'));
     ipcRenderer.send('form-submission', [numd,nums,fileloc])
 	var parent = document.getElementById("center");
 	var child = document.getElementById("classform");
@@ -46,15 +48,21 @@ function sendForm(event) {
 	
 }
  function formCopy(event){
-	 event.preventDefault()
-	 ipcRenderer.send('content-submission', "form submitted")
-	 document.getElementById("mainhead").innerHTML = fileloc+"filler";
-
-/*var elements = document.getElementById("contentform").elements;
-for (var i = 0, element; element = elements[i++];) {
-    document.getElementById("mainhead").innerHTML = fileloc +i
-}*/
-	 
+	event.preventDefault()
+	//var elements = document.getElementsByTagName('input')[0].files[0].path;
+	for(var d = 1; d <= numd; d++){
+		for(var s = 1; s <= nums; s++){
+			index = (d*10+s).toString();
+			var next_path = (document.getElementById('file'+index).files[0].path).toString();
+			var next_path_clean = next_path.replace(/\\/g,"/");
+			var res = next_path.split(".");
+			var file_ext = res[res.length - 1];
+			var new_path = fileloc+"/riep_content/"+"Day_"+d+"/Subject_"+s+"/content"+index+"."+file_ext;
+			fs.createReadStream(next_path_clean).pipe(fs.createWriteStream(new_path));
+		}
+		
+	}
+	ipcRenderer.send('content-submission', "Finished copying files!")
  }
 
 /*const {ipcRenderer} = require('electron')
