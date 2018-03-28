@@ -1,11 +1,13 @@
 const fs = require('fs')
 
 const ipcRenderer = require('electron').ipcRenderer;
+
+var fileloc = "";
 function sendForm(event) {
     event.preventDefault() // stop the form from submitting
 	let numd = document.getElementById("numd").value;
 	let nums = document.getElementById("nums").value;
-	let fileloc = document.getElementById("fileloc").value;
+	fileloc = document.getElementById("fileloc").value;
 	fs.mkdirSync(fileloc+'/riep_content');
     ipcRenderer.send('form-submission', [numd,nums,fileloc])
 	var parent = document.getElementById("center");
@@ -45,12 +47,12 @@ function sendForm(event) {
  function formCopy(event){
 	 event.preventDefault()
 	 ipcRenderer.send('content-submission', "form submitted")
-	 document.getElementById("mainhead").innerHTML = "worked";
+	 document.getElementById("mainhead").innerHTML = fileloc+"filler";
 
-var elements = document.getElementById("contentform").elements;
+/*var elements = document.getElementById("contentform").elements;
 for (var i = 0, element; element = elements[i++];) {
-    document.getElementById("mainhead").innerHTML = "YAY" +i
-}
+    document.getElementById("mainhead").innerHTML = fileloc +i
+}*/
 	 
  }
 
