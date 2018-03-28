@@ -10,7 +10,8 @@ function sendForm(event) {
     event.preventDefault() // stop the form from submitting
 	numd = document.getElementById("numd").value;
 	nums = document.getElementById("nums").value;
-	fileloc = document.getElementById("fileloc").value;
+	var fileloc_raw = document.getElementById("fileloc").value;
+	fileloc = fileloc_raw.replace(/\\/g,"/");
 	fs.mkdirSync(fileloc+'/riep_content');
     ipcRenderer.send('form-submission', [numd,nums,fileloc])
 	var parent = document.getElementById("center");
@@ -63,7 +64,13 @@ function sendForm(event) {
 		
 	}
 	ipcRenderer.send('content-submission', "Finished copying files!")
+	document.getElementById("mainhead").innerHTML = "Step 4 - Insert your USB drive into the Raspberry pi";
+	document.getElementById("secondheader").innerHTML = "The USB drive now contains all of your content, and the Raspberry pi is preloaded with a script that will run as soon as you insert it!";
+	var parent = document.getElementById("center");
+	var child = document.getElementById("contentform");
+	parent.removeChild(child);
  }
+ 
 
 /*const {ipcRenderer} = require('electron')
   console.log(ipcRenderer.sendSync('synchronous-message', 'ping')) // prints "pong"
