@@ -6,11 +6,16 @@ var fileloc = "";
 var numd = 0;
 var nums = 0;
 
+function checkProg(event){
+	var p = ""
+	//if(fs.existsSync(path))
+	ipcRenderer.send('progress', p)
+}
 function sendForm(event) {
     event.preventDefault() // stop the form from submitting
 	numd = document.getElementById("numd").value;
 	nums = document.getElementById("nums").value;
-	var fileloc_raw = document.getElementById("fileloc").value;
+	var fileloc_raw = document.getElementById("fileloc").files[0].path;
 	fileloc = fileloc_raw.replace(/\\/g,"/");
 	fs.mkdirSync(fileloc+'/riep_content');
     ipcRenderer.send('form-submission', [numd,nums,fileloc])
@@ -40,9 +45,21 @@ function sendForm(event) {
 				next_cell.innerHTML = "Subject "+j;
 			}
 			else{
-				next_cell.innerHTML = "<input type='file' id=file" + (k*10+j).toString() + ">";
 				subname = '/'+'Subject_'+j
-				fs.mkdirSync(fileloc+'/riep_content'+foldername+subname);
+				if(fs.existsSync(fileloc+'/riep_content'+foldername+subname)){
+					var c = 0;
+					fs.readdirSync(fileloc+'/riep_content'+foldername+subname).forEach(file => {
+						c+=1;
+					})
+					if(c>0){
+						next_cell.innerHTML = "<i class='material-icons'>done</i>"
+					}else{
+						next_cell.innerHTML = "<input type='file' id=file" + (k*10+j).toString() + ">";
+					}
+				}else{
+					next_cell.innerHTML = "<input type='file' id=file" + (k*10+j).toString() + ">";
+					fs.mkdirSync(fileloc+'/riep_content'+foldername+subname);
+				}
 			}
 		}
 	}

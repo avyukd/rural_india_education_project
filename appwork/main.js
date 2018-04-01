@@ -1,4 +1,5 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain} = require('electron');
+//const {dialog} = require('electron').remote
 const path = require ('path');
 const os = require('os');
 var fs = require('fs');
@@ -9,15 +10,11 @@ function createWindow(){
     window = new BrowserWindow({
         show: false
     });
-
     window.loadURL(`file://${__dirname}/index.html`);
     window.once('ready-to-show', function (){
         window.show();
     });
-
-
     let contents = window.webContents;
-
     window.on('closed', function() {
         window = null;
     });
@@ -28,6 +25,13 @@ function createWindow(){
 
 ipcMain.on('form-submission', function (event, m) {
     console.log("this is the num of days and num of subjects from the form ->", (m))
+
+	//window.requestFileSystem(window.TEMPORARY, 1024*1024, function(fs) {
+		//	fs.root.getDirectory('YESSSS IT WORKED', {create: true}, function(dirEntry) {}, errorHandler);}, errorHandler);
+});
+
+ipcMain.on('progress', function (event, m) {
+    console.log("Checking progress: ", (m))
 
 	//window.requestFileSystem(window.TEMPORARY, 1024*1024, function(fs) {
 		//	fs.root.getDirectory('YESSSS IT WORKED', {create: true}, function(dirEntry) {}, errorHandler);}, errorHandler);
