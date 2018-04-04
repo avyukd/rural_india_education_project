@@ -80,6 +80,7 @@ function sendForm(event) {
 	}
     ipcRenderer.send('form-submission', [numd,nums,fileloc])
 	fs.appendFileSync("metadata.txt", numd+","+nums+","+fileloc, 'utf8');
+	fs.appendFileSync(fileloc+"/riep_content/metadata.txt", numd+","+nums+","+fileloc, 'utf8');
 	renderTable();
 }
  function formCopy(event){
