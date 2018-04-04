@@ -8,25 +8,26 @@ var nums = 0;
 
 function checkProg(event){
 	var p = ""
-	//if(fs.existsSync(path))
+	if(fs.existsSync("metadata.txt")){
+		contents = fs.readFileSync('metadata.txt').toString().split(",");
+		numd = contents[0]; nums = contents[1]; fileloc = contents[2];
+		p = "Contents exist- Skipping to third step."
+		renderTable();
+	}else{
+		p = "Contents do not exist."
+	}
 	ipcRenderer.send('progress', p)
 }
-function sendForm(event) {
-    event.preventDefault() // stop the form from submitting
-	numd = document.getElementById("numd").value;
-	nums = document.getElementById("nums").value;
-	var fileloc_raw = document.getElementById("fileloc").files[0].path;
-	fileloc = fileloc_raw.replace(/\\/g,"/");
-	fs.mkdirSync(fileloc+'/riep_content');
-    ipcRenderer.send('form-submission', [numd,nums,fileloc])
+function renderTable(){
+	document.getElementById("mainhead").innerHTML = "Step 3 - Copy to your custom file structure";
+	document.getElementById("secondheader").innerHTML = "Copy content from your machine onto our portable USB drive seamlessly";
 	var parent = document.getElementById("center");
 	var child = document.getElementById("classform");
 	var cform = document.getElementById("contentform");
 	cform.insertAdjacentHTML('beforeend','<button class="btn waves-effect waves-light" type="submit" id="btn2" name="action">Submit<i class="material-icons right">send</i></button>')
 	parent.removeChild(child);
-	document.getElementById("mainhead").innerHTML = "Step 3 - Copy to your custom file structure";
-	document.getElementById("secondheader").innerHTML = "Copy content from your machine onto our portable USB drive seamlessly";
 	var table = document.getElementById("classtable");
+	
 	for(var k = 0; k < parseInt(numd)+1; k++){
 		var row = table.insertRow(k);
 		if(k!=0){
@@ -65,8 +66,23 @@ function sendForm(event) {
 	}
 	
 }
+function sendForm(event) {
+    event.preventDefault() // stop the form from submitting
+	numd = document.getElementById("numd").value;
+	nums = document.getElementById("nums").value;
+	var fileloc_raw = document.getElementById("fileloc").files[0].path;
+	fileloc = fileloc_raw.replace(/\\/g,"/");
+	//figure async vs sync out
+	if(fs.existsSync(fileloc+'/riep_content')){
+		fs.rmdir(fileloc+'/riep_content', fs.mkdirSync(fileloc+'/riep_content'););
+	}else{
+		fs.mkdirSync(fileloc+'/riep_content');
+	}
+    ipcRenderer.send('form-submission', [numd,nums,fileloc])
+	fs.appendFileSync("metadata.txt", numd+","+nums+","+fileloc, 'utf8');
+	renderTable();
+}
  function formCopy(event){
-	event.preventDefault()
 	//var elements = document.getElementsByTagName('input')[0].files[0].path;
 	for(var d = 1; d <= numd; d++){
 		for(var s = 1; s <= nums; s++){
