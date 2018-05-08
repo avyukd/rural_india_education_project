@@ -73,11 +73,11 @@ function sendForm(event) {
 	var fileloc_raw = document.getElementById("fileloc").files[0].path;
 	fileloc = fileloc_raw.replace(/\\/g,"/");
 	//figure async vs sync out
-	if(fs.existsSync(fileloc+'/riep_content')){
+	/*if(fs.existsSync(fileloc+'/riep_content')){
 		fs.rmdir(fileloc+'/riep_content', fs.mkdirSync(fileloc+'/riep_content'););
 	}else{
 		fs.mkdirSync(fileloc+'/riep_content');
-	}
+	}*/
     ipcRenderer.send('form-submission', [numd,nums,fileloc])
 	fs.appendFileSync("metadata.txt", numd+","+nums+","+fileloc, 'utf8');
 	fs.appendFileSync(fileloc+"/riep_content/metadata.txt", numd+","+nums+","+fileloc, 'utf8');
